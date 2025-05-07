@@ -9,14 +9,15 @@ app.controller('SchedulerController', function($scope, $http) {
     for (let file of files) {
       formData.append("files", file);
     }
-    $http.post("/upload", formData, {
+    $http.post("http://localhost:3000/upload", formData, {
       headers: { 'Content-Type': undefined }
     }).then(response => alert("Files uploaded successfully"));
   };
 
   $scope.generateSchedule = function() {
-    $http.post("/generate-schedule").then(res => {
-      $scope.schedule = res.data;
-    });
+    $http.post("http://localhost:3000/generate-schedule").then(res => {
+    $scope.schedule = res.data;
+  });
+
   };
 });
