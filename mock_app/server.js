@@ -13,7 +13,7 @@ const upload = multer({ storage });
 
 const xlsx = require('xlsx');
 
-global.uploadedData = {}; // Global object to store parsed files
+global.uploadedData = {}; 
 
 app.post('/upload', upload.array('files'), (req, res) => {
   try {

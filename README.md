@@ -11,7 +11,7 @@ The system accepts uploaded `.xlsx` and `.json` files and produces a structured 
 
 ---
 
-##  My Approach
+##  Approach
 
 - Built the backend using **Node.js + Express**
 - Handled file uploads in memory using **Multer**
@@ -19,6 +19,7 @@ The system accepts uploaded `.xlsx` and `.json` files and produces a structured 
 - Applied **round-robin logic** to fairly assign examiners and clients
 - Ensured that all examinees get a complete schedule with no missing assignments
 - Extracted and returned `adminId`, `trackId`, `station`, `examiner`, and `client` per examinee
+- Connected the AngularJS-based frontend to the backend using explicit API routes
 
 ---
 
@@ -145,7 +146,7 @@ This guarantees reliable cross-port communication in a local development setup.
 
 ---
 
-## Why I Chose `.xlsx` over `.csv`
+## Why Chose `.xlsx` over `.csv`
 
 Chosen `.xlsx` files because:
 
