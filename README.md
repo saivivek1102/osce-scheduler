@@ -11,18 +11,18 @@ The system accepts uploaded `.xlsx` and `.json` files and produces a structured 
 
 ---
 
-## 🧠 Approach & Highlights
+## Approach & Highlights
 
-- Built with **Node.js + Express** as the backend API
-- Used **Multer** to handle file uploads in memory
+- Built with Node.js + Express as the backend API
+- Used Multer to handle file uploads in memory
 - Parsed `.xlsx` and `.json` files with the `xlsx` library
-- Applied **round-robin distribution** to fairly assign examiners and clients
+- Applied round-robin distribution to fairly assign examiners and clients
 - Preserved and exposed all required metadata (`adminId`, `trackId`, etc.)
 - Output is clean, consistent, and fully populated (no "TBD")
 
 ---
 
-## ⚙️ How to Run Locally
+## How to Run Locally
 
 ### 3.1 Clone and Install
 
@@ -62,12 +62,12 @@ Then open:
 http://localhost:5500/index.html
 ```
 
-📌 *Why use this?*  
+ *Why use this?*  
 This option is useful if Live Server is not available or you're using a lightweight editor. It serves static files without needing VS Code extensions.
 
 ---
 
-## 📤 Upload Workflow
+## Upload Workflow
 
 Upload these files from the `/sample_files/` folder in the browser interface:
 
@@ -80,7 +80,7 @@ Then click the **"Generate Schedule"** button.
 
 ---
 
-## 📊 Output Format
+##Output Format
 
 Each examinee is assigned:
 
@@ -90,11 +90,11 @@ Each examinee is assigned:
   - `examiner`
   - `client`
 
-✅ All fields are assigned using round-robin logic — no `TBD` placeholders.
+All fields are assigned using round-robin logic — no `TBD` placeholders.
 
 ---
 
-## 🧠 Why Explicit Backend URL
+## Why Explicit Backend URL
 
 We used:
 
@@ -106,7 +106,7 @@ Because the frontend runs on port **5500** and the backend runs on **3000**, the
 
 ---
 
-## 📄 Why We Chose `.xlsx` over `.csv`
+## Why Chose `.xlsx` over `.csv`
 
 `.xlsx` provides:
 
@@ -116,6 +116,6 @@ Because the frontend runs on port **5500** and the backend runs on **3000**, the
 
 ---
 
-## ✅ Final Result
+## Final Result
 
 A clean, professional, and scalable scheduler with well-distributed assignments — ready to review and deploy.

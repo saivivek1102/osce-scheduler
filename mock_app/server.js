@@ -33,10 +33,8 @@ app.post('/upload', upload.array('files'), (req, res) => {
       global.uploadedData[fileKey] = data;
     });
 
-    console.log('✅ Parsed files:', Object.keys(global.uploadedData));
     res.json({ status: "Files parsed and stored", files: Object.keys(global.uploadedData) });
   } catch (error) {
-    console.error('❌ Error parsing files:', error);
     res.status(500).json({ error: 'Failed to parse uploaded files' });
   }
 });
@@ -49,10 +47,6 @@ app.post('/generate-schedule', (req, res) => {
       standardized_clients = [],
       admin_template: templates = []
     } = global.uploadedData;
-
-    console.log("✅ Total examinees loaded:", examinees.length);
-    console.log("✅ Total examiners loaded:", examiners.length);
-    console.log("✅ Total clients loaded:", standardized_clients.length);
 
     if (!Array.isArray(templates) || templates.length === 0) {
       return res.status(400).json({ error: "admin_template is empty or invalid" });
