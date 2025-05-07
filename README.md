@@ -1,4 +1,4 @@
-# OSCE Scheduler – Take-Home Assignment
+# OSCE Scheduler
 
 ## Problem Statement
 
