@@ -11,20 +11,20 @@ The system accepts uploaded `.xlsx` and `.json` files and produces a structured 
 
 ---
 
-## Approach & Highlights
+##  My Approach
 
-- Built with Node.js + Express as the backend API
-- Used Multer to handle file uploads in memory
-- Parsed `.xlsx` and `.json` files with the `xlsx` library
-- Applied round-robin distribution to fairly assign examiners and clients
-- Preserved and exposed all required metadata (`adminId`, `trackId`, etc.)
-- Output is clean, consistent, and fully populated (no "TBD")
+- Built the backend using **Node.js + Express**
+- Handled file uploads in memory using **Multer**
+- Parsed `.xlsx` and `.json` files using the `xlsx` library
+- Applied **round-robin logic** to fairly assign examiners and clients
+- Ensured that all examinees get a complete schedule with no missing assignments
+- Extracted and returned `adminId`, `trackId`, `station`, `examiner`, and `client` per examinee
 
 ---
 
-## How to Run Locally
+## ⚙️ How to Run Locally
 
-### 3.1 Clone and Install
+### 1. Clone and Install
 
 ```bash
 git clone https://github.com/saivivek1102/osce-scheduler.git
@@ -32,25 +32,22 @@ cd osce-scheduler/mock_app
 npm install
 ```
 
-### 3.2 Start Backend Server (Port 3000)
+### 2. Start Backend Server (Port 3000)
 
 ```bash
 npm start
 ```
 
-### 3.3 Start Frontend (Port 5500 or 5501)
+### 3. Start Frontend (Port 5500 or 5501)
 
-**Option A: VS Code Live Server**
-
+**Option A: Using Live Server (VS Code)**  
 Right-click `index.html` → Open with Live Server  
-The frontend will open at:  
+Opens at:  
 ```
 http://127.0.0.1:5500/mock_app/index.html
 ```
 
-**Option B: Python HTTP Server**
-
-You can also serve the frontend manually:
+**Option B: Using Python HTTP Server**
 
 ```bash
 cd osce-scheduler/mock_app
@@ -62,60 +59,102 @@ Then open:
 http://localhost:5500/index.html
 ```
 
- *Why use this?*  
-This option is useful if Live Server is not available or you're using a lightweight editor. It serves static files without needing VS Code extensions.
+*Why use this?*  
+This option is helpful when Live Server isn't available. It serves static files reliably in any environment.
 
 ---
 
 ## Upload Workflow
 
-Upload these files from the `/sample_files/` folder in the browser interface:
+Use the UI to upload these 4 files from the `/sample_files/` folder:
 
 - `admin_template.json`
 - `examinees.xlsx`
 - `examiners.xlsx`
 - `standardized_clients.xlsx`
 
-Then click the **"Generate Schedule"** button.
+Then click the **"Generate Schedule"** button to generate a result.
 
 ---
 
-##Output Format
+## Sample Output (Partial)
 
-Each examinee is assigned:
+<details>
+<summary>Click to expand sample output</summary>
 
-- `adminId` (from the uploaded JSON)
-- `trackId`
-- A schedule of stations with assigned:
-  - `examiner`
-  - `client`
+```json
+{
+  "Examinee_1": {
+    "adminId": "admin_1",
+    "trackId": "track_1",
+    "schedule": [
+      {
+        "station": "station_1",
+        "examiner": "Deborah Holland",
+        "client": "Cody Walker"
+      },
+      {
+        "station": "station_2",
+        "examiner": "Marissa Reed",
+        "client": "Marcus Castillo"
+      },
+      {
+        "station": "station_3",
+        "examiner": "Cindy Landry",
+        "client": "Linda Luna"
+      }
+    ]
+  },
+  "Examinee_2": {
+    "adminId": "admin_2",
+    "trackId": "track_2",
+    "schedule": [
+      {
+        "station": "station_1",
+        "examiner": "Alan Brown",
+        "client": "Anthony Kim"
+      },
+      {
+        "station": "station_2",
+        "examiner": "Kelly Sanford",
+        "client": "Joel Mitchell"
+      },
+      {
+        "station": "station_3",
+        "examiner": "Michael Copeland",
+        "client": "Michael Waters"
+      }
+    ]
+  }
+}
+```
 
-All fields are assigned using round-robin logic — no `TBD` placeholders.
+</details>
 
 ---
 
-## Why Explicit Backend URL
+## Why I Used Full Backend URLs
 
-We used:
+Since the frontend runs on port `5500` and the backend on port `3000`, I used:
 
 ```js
 $http.post("http://localhost:3000/upload", ...)
 ```
 
-Because the frontend runs on port **5500** and the backend runs on **3000**, the full URL ensures correct routing — especially during local development.
+This guarantees reliable cross-port communication in a local development setup.
 
 ---
 
-## Why Chose `.xlsx` over `.csv`
+## Why I Chose `.xlsx` over `.csv`
 
-`.xlsx` provides:
+Chosen `.xlsx` files because:
 
-- Support for multiple sheets (needed for `admin_template` structure)
-- Cleaner formatting and data types
-- Reduced risk of parsing errors (unlike `.csv` with mismatched delimiters or missing headers)
+- They support multiple sheets (required for `admin_template`)
+- They handle rich data types and structures cleanly
+- They avoid issues like comma collisions or encoding problems common with `.csv`
 
 ---
 
-## Final Result
+## Result
 
-A clean, professional, and scalable scheduler with well-distributed assignments — ready to review and deploy.
+A polished, professional OSCE scheduling tool with valid logic, complete output, and clean API integration.
