@@ -20,6 +20,7 @@ The system accepts uploaded `.xlsx` and `.json` files and produces a structured 
 - Ensured that all examinees get a complete schedule with no missing assignments
 - Extracted and returned `adminId`, `trackId`, `station`, `examiner`, and `client` per examinee
 - Connected the AngularJS-based frontend to the backend using explicit API routes
+Separated frontend and backend across ports to reflect scalable real-world architecture
 
 ---
 
